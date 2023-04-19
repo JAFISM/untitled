@@ -158,6 +158,7 @@ class _LoginPageState extends State<LoginPage> {
           QuerySnapshot snapshot =
               await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
                   .gettingUserData(email);
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
