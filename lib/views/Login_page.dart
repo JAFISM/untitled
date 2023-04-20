@@ -39,16 +39,16 @@ class _LoginPageState extends State<LoginPage> {
                 child: Form(
                   key: formKey,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      Text(
+                      const Text(
                         "Welcome",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 40,
                             fontWeight: FontWeight.bold),
                       ),
-                      Text(
+                      const Text(
                         "Login to your Account !",
                         style: TextStyle(
                             fontSize: 18,
@@ -58,6 +58,7 @@ class _LoginPageState extends State<LoginPage> {
                       Image.asset(
                         "assets/splashscreenimg.png",
                         height: 300,
+                        width: double.infinity,
                       ),
                       TextFormField(
                           decoration: textInputDecoration.copyWith(
@@ -109,6 +110,7 @@ class _LoginPageState extends State<LoginPage> {
                         child: ElevatedButton(
                           onPressed: () {
                             login();
+                            //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
                           },
                           child: Text(
                             "Sign In",
@@ -120,11 +122,11 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(15))),
                         ),
                       ),
-                      SizedBox(height: 15),
+                      const SizedBox(height: 15),
                       Text.rich(
                         TextSpan(
                             text: "Don't have an account ?",
-                            style: TextStyle(color: Colors.black, fontSize: 14),
+                            style: const TextStyle(color: Colors.black, fontSize: 14),
                             children: <TextSpan>[
                               TextSpan(
                                   text: "Register here",
@@ -158,7 +160,8 @@ class _LoginPageState extends State<LoginPage> {
           QuerySnapshot snapshot =
               await DatabaseService(uid: FirebaseAuth.instance.currentUser!.uid)
                   .gettingUserData(email);
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+          // ignore: use_build_context_synchronously
+          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const HomeScreen()));
         } else {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(
